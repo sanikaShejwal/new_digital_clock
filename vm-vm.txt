@@ -1,0 +1,17 @@
+in vm1
+
+echo "hello world">file.txt
+
+ls
+
+aws s3 cp file.txt s3://bucket-name/
+
+scp file.txt ec2-user@private-ip-of-vm2:/home/ec2-user/
+
+
+
+in vm2
+
+aws s3 cp s3://bucket-name/file.txt .
+
+cat file.txt

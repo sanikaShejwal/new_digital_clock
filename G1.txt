@@ -1,0 +1,30 @@
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp import util
+
+class MainHandler(webapp.RequestHandler):
+    def get(self):
+        self.response.out.write("<h1>Hello World!</h1>")
+
+        self.response.out.write("<h2>Welcome to Google App Engine</h2>")
+
+        a = 10
+        b = 20
+        c = a + b
+
+        self.response.out.write("<b>Addition is:</b> %d <br><br>" % c)
+
+        self.response.out.write("""
+        <h3>Student Information</h3>
+
+        Name : Sanika <br>
+        Class : TE IT <br>
+        Subject : Cloud Computing <br>
+        """)
+
+def main():
+    application = webapp.WSGIApplication([('/', MainHandler)],
+                                         debug=True)
+    util.run_wsgi_app(application)
+
+if __name__ == '__main__':
+    main()

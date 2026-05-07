@@ -1,0 +1,32 @@
+app.yaml
+ 
+application: helloapp
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /.*
+  script: helloworld.py
+
+
+helloworld.py code
+
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp import util
+
+class MainHandler(webapp.RequestHandler):
+
+    def get(self):
+        self.response.out.write("Hello from Google App Engine")
+
+def main():
+
+    application = webapp.WSGIApplication([
+        ('/', MainHandler)
+    ], debug=True)
+
+    util.run_wsgi_app(application)
+
+if __name__ == '__main__':
+    main()

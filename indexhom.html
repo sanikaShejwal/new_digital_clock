@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Firebase Login Simple</title>
+</head>
+<body>
+
+<h2>Simple Firebase Login</h2>
+
+<input type="email" id="email" placeholder="Enter Email"><br><br>
+<input type="password" id="password" placeholder="Enter Password"><br><br>
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
+  const firebaseConfig = {
+     apiKey: "AIzaSyDrnrJL4HkmkR5FTNbeYb7mPLuMD55cZ_M",
+  authDomain: "first-21ec9.firebaseapp.com",
+  projectId: "first-21ec9",
+   appId: "1:692060446987:web:6e3757040e1074095bc20e"
+  };
+
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.signup = function () {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      document.getElementById("msg").innerText = "Signup Successful!";
+    })
+    .catch((error) => {
+      document.getElementById("msg").innerText = error.message;
+    });
+  }
+
+
+  window.login = function () {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      document.getElementById("msg").innerText = "Login Successful!";
+    })
+    .catch((error) => {
+      document.getElementById("msg").innerText = error.message;
+    });
+  }
+</script>
+
+</body>
+</html>
